@@ -19,7 +19,7 @@ public class LoginOrSignUpService {
     public String Login(String email, String password) {
         User user = userRepository.findAll().stream().filter(u -> u.email().equals(email)).findFirst().orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not found"));
         if(user.password().equals(password)) {
-            return "loggedIn";
+            return user.userId();
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password is incorrect");
         }
@@ -38,6 +38,5 @@ public class LoginOrSignUpService {
         userRepository.save(user);
         return user;
     }
-
     
 }
