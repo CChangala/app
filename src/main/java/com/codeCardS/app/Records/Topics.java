@@ -1,9 +1,11 @@
 package com.codeCardS.app.Records;
 
+import java.util.List;
+
 public record Topics(
-    String topicId,
-    String title,
-    String description
+    String courseId,
+    List<Topic> topic
+    
 ) {
 
 }
