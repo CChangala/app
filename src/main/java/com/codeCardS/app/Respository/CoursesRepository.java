@@ -7,6 +7,5 @@ import com.codeCardS.app.Records.Courses;
 
 @Repository
 public interface CoursesRepository extends MongoRepository<Courses, String> {
-
     
 }
