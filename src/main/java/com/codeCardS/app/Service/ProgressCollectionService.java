@@ -73,6 +73,14 @@ public class ProgressCollectionService {
         .orElse(new UserProgress(userId, Collections.emptyList()));  // Return an empty UserProgress if no progress found
     }
 
+
+    public CourseProgress getCourseProgressStartedByUser(String userId,String courseId){
+        return progressRepository.findByUserId(userId)
+                .flatMap(up -> up.progress().stream()
+                    .filter(cp -> cp.courseId().equals(courseId))
+                    .findFirst())
+                .orElse(null);
+    }
     public void deleteAll(){
         progressRepository.deleteAll();
     }

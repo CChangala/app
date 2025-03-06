@@ -1,5 +1,6 @@
 package com.codeCardS.app.Controller;
 
+import com.codeCardS.app.Records.CourseProgress;
 import com.codeCardS.app.Records.UserProgress;
 
 import org.springframework.http.ResponseEntity;
@@ -54,6 +55,12 @@ public class UserProgressController {
     @GetMapping("/{userId}/started")
     public UserProgress getUserProgress(@PathVariable String userId) {
         return progressCollectionService.getAllCoursesStartedByUser(userId);
+    }
+
+    @CrossOrigin(origins ="*")
+    @GetMapping("/{userId}/started/{courseId}")
+    public CourseProgress getUserProgressByCourse(@PathVariable String userId, @PathVariable String courseId) {
+        return progressCollectionService.getCourseProgressStartedByUser(userId,courseId);
     }
 
     @DeleteMapping("/delete")

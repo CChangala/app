@@ -26,6 +26,12 @@ public class ProgressCalculationService {
     private TopicsRepository topicsRepository;
 
     public List<Response> calculateAllCoursesProgress(String userId) {
+
+        Optional<UserProgress> userProgressOpt = progressRepository.findByUserId(userId);
+        if (!userProgressOpt.isPresent()) {
+            return new ArrayList<>();  // Return empty list if user not found
+        }
+        
         UserProgress userProgress = progressRepository.findByUserId(userId)
             .orElseThrow(() -> new IllegalStateException("User not found"));
 
